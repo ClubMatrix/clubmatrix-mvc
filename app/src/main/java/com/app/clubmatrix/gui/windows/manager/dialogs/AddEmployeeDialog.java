@@ -7,10 +7,9 @@ import com.app.clubmatrix.services.dto.CredentialsDTO;
 import com.app.clubmatrix.services.dto.EmployeeRegistrationDTO;
 
 import javax.swing.*;
-import java.awt.*;
 import java.awt.event.ActionEvent;
 
-public class AddEmployeeDialog extends JDialog {
+public class AddEmployeeDialog extends Dialog {
 
     private final EmployeeService employeeService;
 
@@ -26,7 +25,7 @@ public class AddEmployeeDialog extends JDialog {
     private JButton cancelButton;
 
     public AddEmployeeDialog(JFrame parent, EmployeeService employeeService) {
-        super(parent, "Add Employee", true);
+        super(parent, "Add Employee");
         this.employeeService = employeeService;
         initializeComponents();
         setupLayout();
@@ -42,73 +41,29 @@ public class AddEmployeeDialog extends JDialog {
         usernameField = new UsernameInput(20);
         passwordField = new PasswordInput(20);
 
-        saveButton = new JButton("Save");
-        saveButton.addActionListener(this::saveEmployee);
-        cancelButton = new JButton("Cancel");
-        cancelButton.addActionListener(e -> setVisible(false));
+        saveButton = new Button("Save", this::saveEmployee);
+        cancelButton = new Button("Cancel", e -> setVisible(false));
     }
 
     private void setupLayout() {
-        JPanel panel = new JPanel(new GridBagLayout());
-        GridBagConstraints gbc = new GridBagConstraints();
-        gbc.fill = GridBagConstraints.HORIZONTAL;
-        gbc.gridx = 0;
-        gbc.gridy = 0;
-
-        panel.add(new JLabel("Name:"), gbc);
-        gbc.gridx++;
-        panel.add(nameField, gbc);
-
-        gbc.gridx = 0;
-        gbc.gridy++;
-        panel.add(new JLabel("Address:"), gbc);
-        gbc.gridx++;
-        panel.add(addressField, gbc);
-
-        gbc.gridx = 0;
-        gbc.gridy++;
-        panel.add(new JLabel("Phone:"), gbc);
-        gbc.gridx++;
-        panel.add(phoneField, gbc);
-
-        gbc.gridx = 0;
-        gbc.gridy++;
-        panel.add(new JLabel("Email:"), gbc);
-        gbc.gridx++;
-        panel.add(emailField, gbc);
-
-        gbc.gridx = 0;
-        gbc.gridy++;
-        panel.add(new JLabel("Position:"), gbc);
-        gbc.gridx++;
-        panel.add(positionField, gbc);
-
-        gbc.gridx = 0;
-        gbc.gridy++;
-        panel.add(new JLabel("Salary:"), gbc);
-        gbc.gridx++;
-        panel.add(salaryField, gbc);
-
-        gbc.gridx = 0;
-        gbc.gridy++;
-        panel.add(new JLabel("Username:"), gbc);
-        gbc.gridx++;
-        panel.add(usernameField, gbc);
-
-        gbc.gridx = 0;
-        gbc.gridy++;
-        panel.add(new JLabel("Password:"), gbc);
-        gbc.gridx++;
-        panel.add(passwordField, gbc);
-
-        gbc.gridx = 0;
-        gbc.gridy++;
-        gbc.gridwidth = 2;
-        gbc.anchor = GridBagConstraints.CENTER;
-        panel.add(saveButton, gbc);
-
-        gbc.gridy++;
-        panel.add(cancelButton, gbc);
+        addComponent(new JLabel("Name:"), 0, 0, 1);
+        addComponent(nameField, 1, 0, 1);
+        addComponent(new JLabel("Address:"), 0, 1, 1);
+        addComponent(addressField, 1, 1, 1);
+        addComponent(new JLabel("Phone:"), 0, 2, 1);
+        addComponent(phoneField, 1, 2, 1);
+        addComponent(new JLabel("Email:"), 0, 3, 1);
+        addComponent(emailField, 1, 3, 1);
+        addComponent(new JLabel("Position:"), 0, 4, 1);
+        addComponent(positionField, 1, 4, 1);
+        addComponent(new JLabel("Salary:"), 0, 5, 1);
+        addComponent(salaryField, 1, 5, 1);
+        addComponent(new JLabel("Username:"), 0, 6, 1);
+        addComponent(usernameField, 1, 6, 1);
+        addComponent(new JLabel("Password:"), 0, 7, 1);
+        addComponent(passwordField, 1, 7, 1);
+        addComponent(saveButton, 0, 8, 1);
+        addComponent(cancelButton, 1, 8, 1);
 
         add(panel);
         pack();

@@ -6,10 +6,9 @@ import com.app.clubmatrix.models.PositionType;
 import com.app.clubmatrix.services.EmployeeService;
 
 import javax.swing.*;
-import java.awt.*;
 import java.awt.event.ActionEvent;
 
-public class EditEmployeeDialog extends JDialog {
+public class EditEmployeeDialog extends Dialog {
 
     private final EmployeeService employeeService;
     private final Employee employee;
@@ -24,7 +23,7 @@ public class EditEmployeeDialog extends JDialog {
     private JButton cancelButton;
 
     public EditEmployeeDialog(JFrame parent, EmployeeService employeeService, Employee employee) {
-        super(parent, "Edit Employee", true);
+        super(parent, "Edit Employee");
         this.employeeService = employeeService;
         this.employee = employee;
 
@@ -57,54 +56,20 @@ public class EditEmployeeDialog extends JDialog {
     }
 
     private void setupLayout() {
-        JPanel panel = new JPanel(new GridBagLayout());
-        GridBagConstraints gbc = new GridBagConstraints();
-        gbc.fill = GridBagConstraints.HORIZONTAL;
-        gbc.gridx = 0;
-        gbc.gridy = 0;
-
-        panel.add(new JLabel("Name:"), gbc);
-        gbc.gridx++;
-        panel.add(nameField, gbc);
-
-        gbc.gridx = 0;
-        gbc.gridy++;
-        panel.add(new JLabel("Address:"), gbc);
-        gbc.gridx++;
-        panel.add(addressField, gbc);
-
-        gbc.gridx = 0;
-        gbc.gridy++;
-        panel.add(new JLabel("Phone:"), gbc);
-        gbc.gridx++;
-        panel.add(phoneField, gbc);
-
-        gbc.gridx = 0;
-        gbc.gridy++;
-        panel.add(new JLabel("Email:"), gbc);
-        gbc.gridx++;
-        panel.add(emailField, gbc);
-
-        gbc.gridx = 0;
-        gbc.gridy++;
-        panel.add(new JLabel("Position:"), gbc);
-        gbc.gridx++;
-        panel.add(positionField, gbc);
-
-        gbc.gridx = 0;
-        gbc.gridy++;
-        panel.add(new JLabel("Salary:"), gbc);
-        gbc.gridx++;
-        panel.add(salaryField, gbc);
-
-        gbc.gridx = 0;
-        gbc.gridy++;
-        gbc.gridwidth = 2;
-        gbc.anchor = GridBagConstraints.CENTER;
-        panel.add(saveButton, gbc);
-
-        gbc.gridy++;
-        panel.add(cancelButton, gbc);
+        addComponent(new JLabel("Name:"), 0, 0, 1);
+        addComponent(nameField, 1, 0, 1);
+        addComponent(new JLabel("Address:"), 0, 1, 1);
+        addComponent(addressField, 1, 1, 1);
+        addComponent(new JLabel("Phone:"), 0, 2, 1);
+        addComponent(phoneField, 1, 2, 1);
+        addComponent(new JLabel("Email:"), 0, 3, 1);
+        addComponent(emailField, 1, 3, 1);
+        addComponent(new JLabel("Position:"), 0, 4, 1);
+        addComponent(positionField, 1, 4, 1);
+        addComponent(new JLabel("Salary:"), 0, 5, 1);
+        addComponent(salaryField, 1, 5, 1);
+        addComponent(saveButton, 0, 8, 1);
+        addComponent(cancelButton, 1, 8, 1);
 
         add(panel);
         pack();

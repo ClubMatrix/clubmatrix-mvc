@@ -1,6 +1,8 @@
 package com.app.clubmatrix.gui.windows.manager.dialogs;
 
 import com.app.clubmatrix.gui.components.AgeGroupInput;
+import com.app.clubmatrix.gui.components.Button;
+import com.app.clubmatrix.gui.components.Dialog;
 import com.app.clubmatrix.gui.components.SkillLevelInput;
 import com.app.clubmatrix.models.AgeGroupType;
 import com.app.clubmatrix.models.SkillLevelType;
@@ -8,10 +10,9 @@ import com.app.clubmatrix.services.ActivityService;
 import com.app.clubmatrix.services.dto.ActivityRegistrationDTO;
 
 import javax.swing.*;
-import java.awt.*;
 import java.awt.event.ActionEvent;
 
-public class AddActivityDialog extends JDialog {
+public class AddActivityDialog extends Dialog {
 
     private final ActivityService activityService;
 
@@ -23,7 +24,7 @@ public class AddActivityDialog extends JDialog {
     private JButton cancelButton;
 
     public AddActivityDialog(JFrame parent, ActivityService activityService) {
-        super(parent, "Add Activity", true);
+        super(parent, "Add Activity");
         this.activityService = activityService;
         initializeComponents();
         setupLayout();
@@ -35,49 +36,21 @@ public class AddActivityDialog extends JDialog {
         ageGroupField = new AgeGroupInput();
         skillLevelField = new SkillLevelInput();
 
-        saveButton = new JButton("Save");
-        saveButton.addActionListener(this::saveActivity);
-        cancelButton = new JButton("Cancel");
-        cancelButton.addActionListener(e -> setVisible(false));
+        saveButton = new Button("Save", this::saveActivity);
+        cancelButton = new Button("Cancel", e -> setVisible(false));
     }
 
     private void setupLayout() {
-        JPanel panel = new JPanel(new GridBagLayout());
-        GridBagConstraints gbc = new GridBagConstraints();
-        gbc.fill = GridBagConstraints.HORIZONTAL;
-        gbc.gridx = 0;
-        gbc.gridy = 0;
-
-        panel.add(new JLabel("Name:"), gbc);
-        gbc.gridx++;
-        panel.add(nameField, gbc);
-
-        gbc.gridx = 0;
-        gbc.gridy++;
-        panel.add(new JLabel("Description:"), gbc);
-        gbc.gridx++;
-        panel.add(descriptionField, gbc);
-
-        gbc.gridx = 0;
-        gbc.gridy++;
-        panel.add(new JLabel("Age Group:"), gbc);
-        gbc.gridx++;
-        panel.add(ageGroupField, gbc);
-
-        gbc.gridx = 0;
-        gbc.gridy++;
-        panel.add(new JLabel("Skill Level:"), gbc);
-        gbc.gridx++;
-        panel.add(skillLevelField, gbc);
-
-        gbc.gridx = 0;
-        gbc.gridy++;
-        gbc.gridwidth = 2;
-        gbc.anchor = GridBagConstraints.CENTER;
-        panel.add(saveButton, gbc);
-
-        gbc.gridy++;
-        panel.add(cancelButton, gbc);
+        addComponent(new JLabel("Name:"), 0, 0, 1);
+        addComponent(nameField, 1, 0, 2);
+        addComponent(new JLabel("Description:"), 0, 1, 1);
+        addComponent(descriptionField, 1, 1, 2);
+        addComponent(new JLabel("Age Group:"), 0, 2, 1);
+        addComponent(ageGroupField, 1, 2, 2);
+        addComponent(new JLabel("Skill Level:"), 0, 3, 1);
+        addComponent(skillLevelField, 1, 3, 2);
+        addComponent(saveButton, 0, 4, 1);
+        addComponent(cancelButton, 1, 4, 2);
 
         add(panel);
         pack();
