@@ -1,0 +1,18 @@
+version: "3"
+
+services:
+  postgres:
+    image: bitnami/postgresql:16
+    ports:
+      - 5432:5432
+    volumes:
+      - postgres_data:/bitnami/postgresql
+      - ../migrations:/docker-entrypoint-initdb.d
+    environment:
+      - POSTGRES_USER=${POSTGRES_USER}
+      - POSTGRES_PASSWORD=${POSTGRES_PASSWORD}
+      - POSTGRES_DATABASE=${POSTGRES_DB}
+
+volumes:
+  postgres_data:
+    driver: local
