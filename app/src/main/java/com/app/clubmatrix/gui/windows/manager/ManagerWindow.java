@@ -1,21 +1,19 @@
 package com.app.clubmatrix.gui.windows.manager;
 
 import com.app.clubmatrix.gui.windows.manager.panels.*;
-import com.app.clubmatrix.services.ActivityService;
-import com.app.clubmatrix.services.EmployeeService;
-import com.app.clubmatrix.services.MemberService;
+import com.app.clubmatrix.services.*;
 
 import javax.swing.*;
 import java.awt.*;
 
 public class ManagerWindow extends JPanel {
 
-    public ManagerWindow(MemberService memberService, EmployeeService employeeService, ActivityService activityService) {
+    public ManagerWindow(MemberService memberService, EmployeeService employeeService, ActivityService activityService, OrderService orderService, UserService userService) {
         setLayout(new BorderLayout());
         JTabbedPane tabbedPane = new JTabbedPane();
 
         tabbedPane.addTab("Activities", new ActivityManagementPanel(activityService));
-        tabbedPane.addTab("Cafeteria", new CafeteriaManagementPanel());
+        tabbedPane.addTab("Cafeteria", new CafeteriaManagementPanel(orderService, memberService, employeeService, userService));
         tabbedPane.addTab("Classes", new ClassManagementPanel());
         tabbedPane.addTab("Employees", new EmployeeManagementPanel(employeeService));
         tabbedPane.addTab("Employees overview", new EmployeeOverViewPanel());

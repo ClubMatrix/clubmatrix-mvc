@@ -32,7 +32,7 @@ public class ActivityService {
         return ActivityRepository.findAll();
     }
 
-    public void deleteActivity(Activity Activity) {
-        ActivityRepository.delete(Activity);
+    public void deleteActivity(Activity activity) {
+        ActivityRepository.delete(activity);
     }
 }

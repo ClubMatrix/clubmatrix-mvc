@@ -34,7 +34,7 @@ public class EmployeeTable extends AbstractTableModel {
             case 3 -> employee.getPhone();
             case 4 -> employee.getEmail();
             case 5 -> employee.getPosition().getValue();
-            case 6 -> employee.getSalary();
+            case 6 -> employee.getSalary().toString();
             default -> null;
         };
     }

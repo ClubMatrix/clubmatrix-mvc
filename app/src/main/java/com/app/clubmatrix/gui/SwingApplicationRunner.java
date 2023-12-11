@@ -25,6 +25,8 @@ public class SwingApplicationRunner extends java.awt.Component implements Comman
     EmployeeService employeeService;
     @Autowired
     ActivityService activityService;
+    @Autowired
+    OrderService orderService;
     private CardLayout cardLayout;
     private JPanel cardPanel;
 
@@ -47,7 +49,7 @@ public class SwingApplicationRunner extends java.awt.Component implements Comman
         cardPanel = new JPanel(cardLayout);
 
         cardPanel.add(new AuthenticationWindow(authService, memberService, employeeService, this::onSuccessfulLogin), "Authentication");
-        cardPanel.add(new ManagerWindow(memberService, employeeService, activityService), "Administrative");
+        cardPanel.add(new ManagerWindow(memberService, employeeService, activityService, orderService, userService), "Administrative");
 
         frame.add(cardPanel, BorderLayout.CENTER);
 
