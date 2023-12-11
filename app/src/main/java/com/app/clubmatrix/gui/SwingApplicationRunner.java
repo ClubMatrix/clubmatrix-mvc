@@ -6,11 +6,12 @@ import com.app.clubmatrix.gui.windows.member.MemberWindow;
 import com.app.clubmatrix.models.PositionType;
 import com.app.clubmatrix.models.User;
 import com.app.clubmatrix.services.*;
-import java.awt.*;
-import javax.swing.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.stereotype.Component;
+
+import javax.swing.*;
+import java.awt.*;
 
 @Component
 public class SwingApplicationRunner
@@ -83,6 +84,10 @@ public class SwingApplicationRunner
       memberWindow = new MemberWindow(dependentService, memberService),
       "Member"
     );
+    cardPanel.add(
+      new JLabel("WIP"),
+      "WIP"
+    );
 
     frame.add(cardPanel, BorderLayout.CENTER);
 
@@ -109,8 +114,12 @@ public class SwingApplicationRunner
   }
 
   private void onSuccessfulEmployeeLogin(PositionType positionType) {
-    if (positionType == PositionType.MANAGER) {
-      cardLayout.show(cardPanel, "Administrative");
+    switch (positionType) {
+      case MANAGER:
+        cardLayout.show(cardPanel, "Administrative");
+        break;
+      default:
+        cardLayout.show(cardPanel, "WIP");
     }
   }
 }
