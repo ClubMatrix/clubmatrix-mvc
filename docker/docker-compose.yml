@@ -1,18 +1,18 @@
 version: "3"
 
 services:
-  postgres:
-    image: bitnami/postgresql:16
+  mysql:
+    image: bitnami/mysql:latest
     ports:
-      - 5432:5432
+      - 3306:3306
     volumes:
-      - postgres_data:/bitnami/postgresql
-      - ../migrations:/docker-entrypoint-initdb.d
+      - mysql_data:/bitnami/mysql
     environment:
-      - POSTGRES_USER=${POSTGRES_USER}
-      - POSTGRES_PASSWORD=${POSTGRES_PASSWORD}
-      - POSTGRES_DATABASE=${POSTGRES_DB}
+      - MYSQL_USER=${MYSQL_USER}
+      - MYSQL_PASSWORD=${MYSQL_PASSWORD}
+      - MYSQL_DATABASE=${MYSQL_DB}
+      - MYSQL_ROOT_PASSWORD=${MYSQL_ROOT_PASSWORD}
 
 volumes:
-  postgres_data:
+  mysql_data:
     driver: local
