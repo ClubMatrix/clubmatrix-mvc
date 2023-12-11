@@ -2,6 +2,7 @@ package com.app.clubmatrix.gui;
 
 import com.app.clubmatrix.gui.windows.manager.ManagerWindow;
 import com.app.clubmatrix.gui.windows.authentication.AuthenticationWindow;
+import com.app.clubmatrix.gui.windows.member.MemberWindow;
 import com.app.clubmatrix.models.PositionType;
 import com.app.clubmatrix.models.User;
 import com.app.clubmatrix.services.*;
@@ -27,8 +28,11 @@ public class SwingApplicationRunner extends java.awt.Component implements Comman
     ActivityService activityService;
     @Autowired
     OrderService orderService;
+    @Autowired
+    DependentService dependentService;
     private CardLayout cardLayout;
     private JPanel cardPanel;
+    private MemberWindow memberWindow;
 
     @Override
     public void run(String... args) {
@@ -50,6 +54,7 @@ public class SwingApplicationRunner extends java.awt.Component implements Comman
 
         cardPanel.add(new AuthenticationWindow(authService, memberService, employeeService, this::onSuccessfulLogin), "Authentication");
         cardPanel.add(new ManagerWindow(memberService, employeeService, activityService, orderService, userService), "Administrative");
+        cardPanel.add(memberWindow = new MemberWindow(dependentService, memberService), "Member");
 
         frame.add(cardPanel, BorderLayout.CENTER);
 
@@ -67,9 +72,11 @@ public class SwingApplicationRunner extends java.awt.Component implements Comman
             return;
         }
 
-        onSuccessfulMemberLogin();
+        onSuccessfulMemberLogin(username);
     }
-    private void onSuccessfulMemberLogin() {
+    private void onSuccessfulMemberLogin(String username) {
+        memberWindow.setUsername(username);
+        cardLayout.show(cardPanel, "Member");
     }
 
     private void onSuccessfulEmployeeLogin(PositionType positionType) {
