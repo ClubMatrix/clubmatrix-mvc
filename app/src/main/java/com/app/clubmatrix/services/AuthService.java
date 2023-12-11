@@ -9,20 +9,23 @@ import org.springframework.stereotype.Service;
 @Service
 public class AuthService {
 
-    @Autowired
-    CustomUserDetailsService userDetailsService;
+  @Autowired
+  CustomUserDetailsService userDetailsService;
 
-    @Autowired
-    BCryptPasswordEncoder passwordEncoder;
+  @Autowired
+  BCryptPasswordEncoder passwordEncoder;
 
-    public AuthService() {
-    }
+  public AuthService() {}
 
-    public boolean authenticateUser(CredentialsDTO credentials) {
-        UserDetails userDetails = userDetailsService.loadUserByUsername(credentials.getUsername());
-        return  passwordEncoder.matches(new String(credentials.getPassword()), userDetails.getPassword());
-    }
+  public boolean authenticateUser(CredentialsDTO credentials) {
+    UserDetails userDetails = userDetailsService.loadUserByUsername(
+      credentials.getUsername()
+    );
+    return passwordEncoder.matches(
+      new String(credentials.getPassword()),
+      userDetails.getPassword()
+    );
+  }
 
-    public void authorizeUser() {
-    }
+  public void authorizeUser() {}
 }

@@ -1,13 +1,12 @@
 package com.app.clubmatrix.models;
 
 import jakarta.persistence.*;
+import java.time.LocalDateTime;
+import java.util.Set;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
-
-import java.time.LocalDateTime;
-import java.util.Set;
 
 @Entity
 @Table(name = "users")
@@ -34,7 +33,11 @@ public class User {
   private Set<Notification> notifications;
 
   @ManyToMany
-  @JoinTable(name = "user_group_memberships", joinColumns = @JoinColumn(name = "user_id"), inverseJoinColumns = @JoinColumn(name = "group_id"))
+  @JoinTable(
+    name = "user_group_memberships",
+    joinColumns = @JoinColumn(name = "user_id"),
+    inverseJoinColumns = @JoinColumn(name = "group_id")
+  )
   private Set<Group> groups;
 
   @OneToOne(mappedBy = "user", fetch = FetchType.EAGER)

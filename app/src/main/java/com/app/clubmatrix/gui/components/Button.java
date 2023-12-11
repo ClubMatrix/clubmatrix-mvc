@@ -1,13 +1,12 @@
 package com.app.clubmatrix.gui.components;
 
-import javax.swing.*;
 import java.awt.event.ActionListener;
+import javax.swing.*;
 
 public class Button extends JButton {
 
-    public Button(String text, ActionListener actionListener) {
-        super(text);
-
-        addActionListener(actionListener);
-    }
+  public Button(String text, ActionListener actionListener) {
+    super(text);
+    addActionListener(actionListener);
+  }
 }

@@ -7,7 +7,7 @@ import lombok.Getter;
 @AllArgsConstructor
 public class OrderRegistrationDTO {
 
-    private Integer amount;
-    private String memberUsername;
-    private String employeeUsername;
+  private Integer amount;
+  private String memberUsername;
+  private String employeeUsername;
 }

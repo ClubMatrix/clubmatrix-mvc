@@ -6,7 +6,6 @@ import lombok.Getter;
 @Getter
 @AllArgsConstructor
 public enum PositionType {
-
   MANAGER("Manager"),
   INSTRUCTOR("Instructor"),
   CLERK("Clerk"),

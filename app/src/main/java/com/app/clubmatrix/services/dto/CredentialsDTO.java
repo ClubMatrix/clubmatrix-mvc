@@ -7,6 +7,6 @@ import lombok.Getter;
 @AllArgsConstructor
 public class CredentialsDTO {
 
-    private String username;
-    private char[] password;
+  private String username;
+  private char[] password;
 }

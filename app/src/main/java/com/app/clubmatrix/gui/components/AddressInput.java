@@ -4,16 +4,19 @@ import javax.swing.*;
 
 public class AddressInput extends JTextField {
 
-    public AddressInput(int columns) {
-        super(columns);
+  public AddressInput(int columns) {
+    super(columns);
+    setInputVerifier(new AddressVerifier());
+  }
 
-        setInputVerifier(new AddressVerifier());
-    }
+  static class AddressVerifier extends InputVerifier {
 
-    static class AddressVerifier extends InputVerifier {
-        @Override
-        public boolean verify(JComponent input) {
-            return !((JTextField) input).getText().isEmpty() && ((JTextField) input).getText().length() <= 255;
-        }
+    @Override
+    public boolean verify(JComponent input) {
+      return (
+        !((JTextField) input).getText().isEmpty() &&
+        ((JTextField) input).getText().length() <= 255
+      );
     }
+  }
 }

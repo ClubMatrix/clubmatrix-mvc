@@ -1,8 +1,7 @@
 package com.app.clubmatrix.models;
 
-import java.time.LocalDateTime;
-
 import jakarta.persistence.*;
+import java.time.LocalDateTime;
 import lombok.*;
 
 @Getter

@@ -8,11 +8,11 @@ import lombok.Getter;
 @AllArgsConstructor
 public class EmployeeRegistrationDTO {
 
-    private String name;
-    private String address;
-    private String phone;
-    private String email;
-    private PositionType position;
-    private Integer salary;
-    private CredentialsDTO credentials;
+  private String name;
+  private String address;
+  private String phone;
+  private String email;
+  private PositionType position;
+  private Integer salary;
+  private CredentialsDTO credentials;
 }

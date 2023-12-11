@@ -9,8 +9,8 @@ import lombok.Getter;
 @AllArgsConstructor
 public class ActivityRegistrationDTO {
 
-    private String name;
-    private String description;
-    private AgeGroupType ageGroup;
-    private SkillLevelType skillLevel;
+  private String name;
+  private String description;
+  private AgeGroupType ageGroup;
+  private SkillLevelType skillLevel;
 }

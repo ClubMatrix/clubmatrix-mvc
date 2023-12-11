@@ -10,25 +10,28 @@ import org.springframework.stereotype.Service;
 @Service
 public class UserService {
 
-    @Autowired
-    private UserRepository userRepository;
+  @Autowired
+  private UserRepository userRepository;
 
-    @Autowired
-    private BCryptPasswordEncoder passwordEncoder;
+  @Autowired
+  private BCryptPasswordEncoder passwordEncoder;
 
-    public User createUser(CredentialsDTO credentials) {
-        User newUser = new User();
+  public User createUser(CredentialsDTO credentials) {
+    User newUser = new User();
 
-        newUser.setUsername(credentials.getUsername());
-        newUser.setPassword(passwordEncoder.encode(new String(credentials.getPassword())));
+    newUser.setUsername(credentials.getUsername());
+    newUser.setPassword(
+      passwordEncoder.encode(new String(credentials.getPassword()))
+    );
 
-        return userRepository.save(newUser);
-    }
+    return userRepository.save(newUser);
+  }
 
-    public User getUserByUsername(String username) {
-        return userRepository.findByUsername(username).orElse(null);
-    }
-    public void deleteUser(User user) {
-        userRepository.delete(user);
-    }
+  public User getUserByUsername(String username) {
+    return userRepository.findByUsername(username).orElse(null);
+  }
+
+  public void deleteUser(User user) {
+    userRepository.delete(user);
+  }
 }

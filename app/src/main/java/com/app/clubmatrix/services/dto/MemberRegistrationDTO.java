@@ -7,9 +7,9 @@ import lombok.Getter;
 @AllArgsConstructor
 public class MemberRegistrationDTO {
 
-    private String name;
-    private String address;
-    private String phone;
-    private String email;
-    private CredentialsDTO credentials;
+  private String name;
+  private String address;
+  private String phone;
+  private String email;
+  private CredentialsDTO credentials;
 }
