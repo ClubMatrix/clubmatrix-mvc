@@ -1,6 +1,7 @@
 package com.app.clubmatrix.gui.windows.manager.panels.models;
 
 import com.app.clubmatrix.models.Employee;
+import com.app.clubmatrix.utils.Format;
 
 import javax.swing.table.AbstractTableModel;
 import java.util.List;
@@ -34,7 +35,7 @@ public class EmployeeTable extends AbstractTableModel {
             case 3 -> employee.getPhone();
             case 4 -> employee.getEmail();
             case 5 -> employee.getPosition().getValue();
-            case 6 -> employee.getSalary().toString();
+            case 6 -> Format.formatMoney(employee.getSalary());
             default -> null;
         };
     }

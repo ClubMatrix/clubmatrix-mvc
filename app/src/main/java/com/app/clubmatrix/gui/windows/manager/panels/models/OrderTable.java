@@ -1,6 +1,7 @@
 package com.app.clubmatrix.gui.windows.manager.panels.models;
 
 import com.app.clubmatrix.models.Order;
+import com.app.clubmatrix.utils.Format;
 
 import javax.swing.table.AbstractTableModel;
 import java.util.List;
@@ -29,7 +30,7 @@ public class OrderTable extends AbstractTableModel {
         Order order = orders.get(rowIndex);
         return switch (columnIndex) {
             case 0 -> order.getId();
-            case 1 -> order.getAmount();
+            case 1 -> Format.formatMoney(order.getAmount());
             case 2 -> order.getMember().getName();
             case 3 -> order.getEmployee().getName();
             case 4 -> order.getCreatedAt();
